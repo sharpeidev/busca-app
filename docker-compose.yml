@@ -19,7 +19,7 @@ services:
             - "8080:80"
         volumes:
             - ./laravel-app:/var/www/html/laravel-app
-            - ./nginx.conf:/etc/nginx/conf.d/default.conf
+            - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
         networks:
             - busca_app_network
 
@@ -36,6 +36,7 @@ services:
             MYSQL_ROOT_PASSWORD: root
         volumes:
             - dbdata:/var/lib/mysql
+            - ./docker/mysql/init-scripts:/docker-entrypoint-initdb.d
         networks:
             - busca_app_network
 
